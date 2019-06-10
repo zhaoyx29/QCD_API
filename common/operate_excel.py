@@ -33,7 +33,7 @@ class OperateExcel:
         self.sh.cell(row,column).value=new_value
         self.wb.save(self.filename)
 
-from src.test_resource.common.filepath import *
+from common.filepath import *
 if __name__ == '__main__':
     data=OperateExcel(data_path+r'\test_datas.xlsx','test_data').read_data()
     print(type(data[0]))
