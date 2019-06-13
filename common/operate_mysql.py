@@ -31,4 +31,4 @@ class OperateMysql:
 if __name__ == '__main__':
     sql='select max(leaveamount) from  member'
     r = OperateMysql().read_mysql(sql)
-    print(r)
+    print(float(str(r[0][0])))

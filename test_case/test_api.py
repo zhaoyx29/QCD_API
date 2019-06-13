@@ -18,6 +18,7 @@ uri = ReadConfig(config_path+r'\config.ini').read_config('URI','uri')
 
 #声明全局变量
 COOKIES={}
+INVEST_MEMBER_ID=''   #存储投资用户的用户ID
 
 
 @ddt
@@ -34,6 +35,8 @@ class TestApi(unittest.TestCase):
         #发起HTTP请求
         res = HttpRequests().http_request(url,args['method'],eval(args['param']),cookies=COOKIES)     #args['param']返回值为string，需转换为dict
         logger.info('返回结果：{0}'.format(res.json()))
+
+        #获取投资用户的用户ID
 
         #获取返回结果中的cookie，若cookies不为空，则替换
         if res.cookies != {}:
