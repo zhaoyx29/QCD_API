@@ -8,7 +8,7 @@ import requests
 from common.my_logger import logger
 
 class HttpRequests:
-    def http_request(self,url,method,args):
+    def http_request(self,url,method,args,cookies={}):
         if method.lower() == 'get':
             try:
                 logger.info('发起get请求')
