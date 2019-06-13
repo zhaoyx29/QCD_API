@@ -23,13 +23,16 @@ class TestApi(unittest.TestCase):
         logger.info('正在执行第{0}条用例'.format(args['case_id']))
         logger.info('测试参数：{0}'.format(args))
         url = uri+args['apiName']
+        #最终发送的参数
+        logger.info('发送的请求参数为：{0}'.format(args['param']))
         #发起HTTP请求
-        res = HttpRequests().http_request(url,args['method'],eval(args['param']))
+        res = HttpRequests().http_request(url,args['method'],eval(args['param']))     #args['param']返回值为string，需转换为dict
         logger.info('返回结果：{0}'.format(res.json()))
-        logger.info(type(args['case_id']))
         #断言，比对结果
         try:
+            logger.info('返回的code为{}，期望code为{1}'.format(res.json()['code'],args['expected']))
             self.assertEqual(eval(res.json()['code']),args['expected'])
+            logger.info('实际结果和期望结果匹配，测试通过')
             test_result='pass'
         except Exception as e:
             logger.exception('断言出错啦，期望结果为：{0}，实际结果为：{1}'.format(args['expected'],res.json()['code']))
